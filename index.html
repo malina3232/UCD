@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Willkommen in der Welt der Korallenriffe</title>
+    <!-- Google Fonts einbinden -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+	
+    <style>
+        /* Grundlegende Stile */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        /* Hauptcontainer */
+        .ocean-container {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            background: url('Images/underwater-background.jpg') no-repeat center center;
+            background-size: cover;
+            overflow: hidden;
+        }
+
+        /* Blasen */
+        .bubble {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            animation: bubbleRise linear infinite;
+        }
+
+        @keyframes bubbleRise {
+            0% {
+                transform: translateY(100vh) scale(0.3);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            80% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Header und Navigation */
+        .site-header {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px 0;
+            border-bottom: 2px solid #0077be;
+            position: relative;
+            z-index: 100;
+        }
+
+        .site-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-item {
+            position: relative;
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 0 10px;
+            text-decoration: none;
+            color: #00458b;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .nav-item:hover {
+            background-color: rgba(0, 119, 190, 0.2);
+        }
+
+        .nav-item .emoji {
+            font-size: 1.5rem;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        .nav-item.active {
+            background-color: rgba(0, 119, 190, 0.3);
+        }
+
+        /* Dropdown-Menü */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 200px;
+            display: none;
+            z-index: 101;
+        }
+
+        .nav-item:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 10px 15px;
+            color: #00458b;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid rgba(0, 119, 190, 0.1);
+            font-weight: 500;
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .dropdown-item:hover {
+            background-color: rgba(0, 119, 190, 0.1);
+            padding-left: 20px;
+        }
+
+        /* Hauptinhalt */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .welcome-title {
+            color: #fff;
+            font-size: 3.2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            font-weight: 700;
+        }
+
+        .info-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-box h2 {
+            color: #00458b;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .info-box p {
+            color: #333;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .content-layout {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .sidebar {
+            flex: 0 0 200px;
+        }
+
+        .main-area {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .coral-graphic {
+            width: 100%;
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .speech-bubble {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 15px;
+            position: relative;
+            margin-top: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .speech-bubble:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border: 15px solid transparent;
+            border-top-color: rgba(255, 255, 255, 0.9);
+            border-bottom: 0;
+            margin-left: -15px;
+            margin-bottom: -15px;
+        }
+
+        /* Korallen am Boden */
+        .coral-bed {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            z-index: 1;
+        }
+
+        /* Maskottchen mit Sprechblase */
+        .mascot-container {
+            position: absolute;
+            bottom: 80px;
+            left: 10%;
+            z-index: 50;
+            animation: swimAround 30s linear infinite;
+        }
+
+        @keyframes swimAround {
+            0% {
+                transform: translateX(0) translateY(0) rotate(5deg);
+            }
+            25% {
+                transform: translateX(30vw) translateY(-50px) rotate(-5deg);
+            }
+            50% {
+                transform: translateX(60vw) translateY(30px) rotate(10deg);
+            }
+            75% {
+                transform: translateX(30vw) translateY(-20px) rotate(-10deg);
+            }
+            100% {
+                transform: translateX(0) translateY(0) rotate(5deg);
+            }
+        }
+
+        .mascot {
+            width: 250px;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .mascot:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .mascot-speech {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 15px;
+            margin-bottom: 15px;
+            max-width: 280px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: none;
+        }
+
+        .mascot-speech.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .mascot-speech:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 30px;
+            width: 0;
+            height: 0;
+            border: 15px solid transparent;
+            border-top-color: rgba(255, 255, 255, 0.9);
+            border-bottom: 0;
+        }
+
+        .mascot-speech p {
+            margin: 0;
+            color: #00458b;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Audio-Steuerung */
+        .audio-control {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        #sound-toggle {
+            background: rgba(255, 255, 255, 0.7);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        #sound-toggle:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: scale(1.1);
+        }
+
+        #sound-icon {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .welcome-title {
+                font-size: 2.5rem;
+            }
+            
+            .content-layout {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                order: 2;
+                flex: 0 0 100%;
+                display: flex;
+                justify-content: center;
+            }
+            
+            .main-area {
+                order: 1;
+            }
+            
+            .coral-graphic {
+                max-width: 150px;
+            }
+            
+            .mascot {
+                width: 180px;
+            }
+            
+            .mascot-speech {
+                max-width: 220px;
+            }
+            
+            .dropdown {
+                position: static;
+                width: 100%;
+                margin-top: 5px;
+            }
+            
+            .nav-item {
+                margin-bottom: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .welcome-title {
+                font-size: 2rem;
+            }
+            
+            .site-nav {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .nav-item {
+                font-size: 0.9rem;
+                margin: 0 5px;
+                padding: 8px 10px;
+            }
+            
+            .nav-item .emoji {
+                font-size: 1.3rem;
+            }
+            
+            .mascot {
+                width: 150px;
+            }
+            
+            .mascot-speech {
+                max-width: 180px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hauptcontainer -->
+    <div class="ocean-container">
+        <!-- Blasen-Container -->
+        <div class="bubbles-container"></div>
+        
+        <!-- Header und Navigation -->
+        <header class="site-header">
+            <nav class="site-nav">
+                <div class="nav-item active">
+                    <span class="emoji">🐚</span>
+					<a href="sites/ueber-korallenriffe.html">Über Korallenriffe</a>
+                                   </div>
+				
+                <div class="nav-item">
+                    <span class="emoji">🐠</span>
+                    Arten
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item">Steinkorallen</a>
+                        <a href="#" class="dropdown-item">Weichkorallen</a>
+                        <a href="#" class="dropdown-item">Hornkorallen</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <span class="emoji">🎮</span>
+                    Spiel und Spaß
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item">Quiz</a>
+                        <a href="#" class="dropdown-item">Malvorlagen</a>
+                        <a href="#" class="dropdown-item">Puzzle</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <span class="emoji">🌊</span>
+                    Schutzmaßnahmen
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item">Bedrohungen</a>
+                        <a href="#" class="dropdown-item">Schutzprojekte</a>
+                        <a href="#" class="dropdown-item">Hilfsmöglichkeiten</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <span class="emoji">✉️</span>
+                    Kontakt
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item">Formular</a>
+                        <a href="#" class="dropdown-item">Impressum</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        
+        <!-- Hauptinhalt -->
+        <main class="main-content">
+            <h1 class="welcome-title">Willkommen in der Welt der Korallenriffe!</h1>
+            
+            <div class="content-layout">
+                <aside class="sidebar">
+                    <img src="Images/koralli.PNG" alt="Korallen" class="coral-graphic">
+                </aside>
+                
+                <div class="main-area">
+                    <div class="info-box">
+                        <p>Korallenriffe gehören zu den faszinierendsten Ökosystemen unserer Erde. Sie sind nicht nur wunderschön anzusehen, sondern auch Heimat für tausende verschiedene Tierarten. Tauche mit uns ein in die bunte Welt unter Wasser!</p>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h2>Überschrift</h2>
+                        <p>Korallenriffe werden oft als "Regenwälder der Meere" bezeichnet, weil sie so viele verschiedene Lebewesen beherbergen. Obwohl sie nur etwa 0,1% des Meeresbodens bedecken, sind sie die Heimat von mehr als 25% aller Meeresbewohner!</p>
+                    </div>
+                    
+                    <div class="speech-bubble">
+                        <p>Wusstest du, dass Korallen keine Pflanzen sind? Sie sind tatsächlich Tiere, die in großen Kolonien zusammenleben!</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Koralli-Maskottchen mit Sprechblase -->
+        <div class="mascot-container">
+            <div class="mascot-speech" id="mascot-speech">
+                <p>Hallo! Ich bin Koralli. Klick auf mich, um mehr über die faszinierende Welt der Korallenriffe zu erfahren!</p>
+            </div>
+            <img src="Images/koralli.PNG" alt="Koralli-Maskottchen" class="mascot" id="mascot">
+        </div>
+        
+        <!-- Korallen am Boden -->
+        <img src="Images/Korallen.png" alt="Korallen" class="coral-bed">
+        
+        <!-- Audio-Steuerung -->
+        <div class="audio-control">
+            <button id="sound-toggle" aria-label="Sound ein/ausschalten">
+                <img src="Images/sound-on.png" alt="Sound" id="sound-icon">
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Blasen erzeugen
+            createBubbles();
+            
+            // Sound-Steuerung
+            setupSoundControl();
+            
+            // Interaktive Elemente
+            setupInteractiveElements();
+            
+            // Maskottchen-Sprechblase
+            setupMascot();
+        });
+
+        // Blasen erzeugen
+        function createBubbles() {
+            const bubblesContainer = document.querySelector('.bubbles-container');
+            const bubbleCount = 30;
+            
+            for (let i = 0; i < bubbleCount; i++) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+                
+                // Zufällige Größe
+                const size = Math.random() * 20 + 5;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                
+                // Zufällige Position
+                const posX = Math.random() * 100;
+                bubble.style.left = `${posX}%`;
+                
+                // Zufällige Animation-Dauer
+                const duration = Math.random() * 10 + 5;
+                bubble.style.animationDuration = `${duration}s`;
+                
+                // Zufällige Verzögerung
+                const delay = Math.random() * 10;
+                bubble.style.animationDelay = `${delay}s`;
+                
+                bubblesContainer.appendChild(bubble);
+            }
+        }
+
+        // Sound-Steuerung
+        function setupSoundControl() {
+            const soundToggle = document.getElementById('sound-toggle');
+            const soundIcon = document.getElementById('sound-icon');
+            let soundEnabled = false;
+            
+            // Erstelle Audio-Elemente
+            const oceanAmbient = document.createElement('audio');
+            oceanAmbient.src = 'Images/ocean-ambient.mp3';
+            oceanAmbient.loop = true;
+            oceanAmbient.preload = 'auto';
+            document.body.appendChild(oceanAmbient);
+            
+            const bubbleSound = document.createElement('audio');
+            bubbleSound.src = 'Images/ES_Bubbles, Bubble, Deep, Super Stereo 01 - Epidemic Sound.mp3';
+            bubbleSound.preload = 'auto';
+            document.body.appendChild(bubbleSound);
+            
+            const clickSound = document.createElement('audio');
+            clickSound.src = 'Images/click.mp3';
+            clickSound.preload = 'auto';
+            document.body.appendChild(clickSound);
+            
+            soundToggle.addEventListener('click', function() {
+                soundEnabled = !soundEnabled;
+                
+                if (soundEnabled) {
+                    soundIcon.src = 'Images/sound-on.png';
+                    oceanAmbient.play();
+                } else {
+                    soundIcon.src = 'Images/sound-off.png';
+                    oceanAmbient.pause();
+                }
+                
+                // Klicksound abspielen
+                const clickSoundClone = clickSound.cloneNode();
+                clickSoundClone.volume = 0.5;
+                clickSoundClone.play();
+            });
+        }
+
+        // Interaktive Elemente
+        function setupInteractiveElements() {
+            // Navigation-Items
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            navItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    // Blasensound abspielen
+                    const bubbleSound = document.querySelector('audio[src="Images/ES_Bubbles, Bubble, Deep, Super Stereo 01 - Epidemic Sound.mp3"]');
+                    if (bubbleSound) {
+                        const bubbleSoundClone = bubbleSound.cloneNode();
+                        bubbleSoundClone.volume = 0.3;
+                        bubbleSoundClone.play();
+                    }
+                });
+                
+                item.addEventListener('click', function(e) {
+                    // Nur verhindern, wenn das Hauptelement geklickt wurde (nicht das Dropdown)
+                    if (e.target === this || e.target === this.querySelector('.emoji') || e.target.tagName !== 'A') {
+                        e.preventDefault();
+                        
+                        // Aktiven Zustand für Navigation zurücksetzen
+                        navItems.forEach(nav => nav.classList.remove('active'));
+                        
+                        // Diesen Nav-Item als aktiv markieren
+                        this.classList.add('active');
+                        
+                        // Klicksound abspielen
+                        const clickSound = document.querySelector('audio[src="Images/click.mp3"]');
+                        if (clickSound) {
+                            const clickSoundClone = clickSound.cloneNode();
+                            clickSoundClone.volume = 0.5;
+                            clickSoundClone.play();
+                        }
+                    }
+                });
+            });
+            
+            // Dropdown-Items
+            const dropdownItems = document.querySelectorAll('.dropdown-item');
+            
+            dropdownItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    // Blasensound abspielen
+                    const bubbleSound = document.querySelector('audio[src="Images/ES_Bubbles, Bubble, Deep, Super Stereo 01 - Epidemic Sound.mp3"]');
+                    if (bubbleSound) {
+                        const bubbleSoundClone = bubbleSound.cloneNode();
+                        bubbleSoundClone.volume = 0.2;
+                        bubbleSoundClone.play();
+                    }
+                });
+                
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Klicksound abspielen
+                    const clickSound = document.querySelector('audio[src="Images/click.mp3"]');
+                    if (clickSound) {
+                        const clickSoundClone = clickSound.cloneNode();
+                        clickSoundClone.volume = 0.5;
+                        clickSoundClone.play();
+                    }
+                    
+                    // Hier könnte später die Navigation zu Unterseiten implementiert werden
+                    console.log("Dropdown-Item geklickt: " + this.textContent);
+                });
+            });
+        }
+        
+        // Maskottchen-Sprechblase
+        function setupMascot() {
+            const mascot = document.getElementById('mascot');
+            const mascotSpeech = document.getElementById('mascot-speech');
+            
+            // Sprechblase beim Laden anzeigen und nach 5 Sekunden ausblenden
+            mascotSpeech.classList.add('active');
+            setTimeout(() => {
+                mascotSpeech.classList.remove('active');
+            }, 5000);
+            
+            // Sprechblase bei Klick auf Maskottchen ein-/ausblenden
+            mascot.addEventListener('click', function() {
+                const clickSound = document.querySelector('audio[src="Images/click.mp3"]');
+                if (clickSound) {
+                    const clickSoundClone = clickSound.cloneNode();
+                    clickSoundClone.volume = 0.5;
+                    clickSoundClone.play();
+                }
+                
+                mascotSpeech.classList.toggle('active');
+                
+                // Sprechblase nach 5 Sekunden wieder ausblenden
+                if (mascotSpeech.classList.contains('active')) {
+                    setTimeout(() => {
+                        mascotSpeech.classList.remove('active');
+                    }, 5000);
+                }
+            });
+            
+            // Animation bei Hover
+            mascot.addEventListener('mouseenter', function() {
+                // Blasensound abspielen
+                const bubbleSound = document.querySelector('audio[src="Images/ES_Bubbles, Bubble, Deep, Super Stereo 01 - Epidemic Sound.mp3"]');
+                if (bubbleSound) {
+                    const bubbleSoundClone = bubbleSound.cloneNode();
+                    bubbleSoundClone.volume = 0.3;
+                    bubbleSoundClone.play();
+                }
+            });
+            
+            // Verschiedene Sprechblasen-Texte
+            const mascotTexts = [
+                "Hallo! Ich bin Koralli. Klick auf mich, um mehr über die faszinierende Welt der Korallenriffe zu erfahren!",
+                "Wusstest du, dass Korallen winzige Tiere sind, die in Kolonien leben?",
+                "Das Great Barrier Reef in Australien ist das größte Korallenriff der Welt!",
+                "Korallenriffe sind die Heimat für etwa 25% aller Meeresbewohner!",
+                "Korallen wachsen sehr langsam - nur wenige Zentimeter pro Jahr."
+            ];
+            
+            // Zufälligen Text anzeigen, wenn auf das Maskottchen geklickt wird
+            mascot.addEventListener('click', function() {
+                const randomText = mascotTexts[Math.floor(Math.random() * mascotTexts.length)];
+                mascotSpeech.querySelector('p').textContent = randomText;
+            });
+        }
+    </script>
+</body>
+</html>

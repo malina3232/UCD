@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Impressum</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+	  
+    /* Grundlegende Stile */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Quicksand', sans-serif;
+    }
+    
+    body {
+      overflow-x: hidden;
+    }
+    
+    /* Hauptcontainer */
+    .ocean-container {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      background: url('../Images/underwater-background.jpg') no-repeat center center;
+      background-size: cover;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* Blasen */
+    .bubble {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+      animation: bubbleRise linear infinite;
+    }
+    
+    @keyframes bubbleRise {
+      0% {
+        transform: translateY(100vh) scale(0.3);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.8;
+      }
+      80% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-100px) scale(1);
+        opacity: 0;
+      }
+    }
+    
+  /* Header und Navigation */
+      .site-header {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 15px 0;
+        border-bottom: 3px solid #0077be;
+        position: relative;
+        z-index: 100;
+      }
+      
+      .site-nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      
+      .nav-item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: 15px 20px;
+        margin: 0 15px;
+        text-decoration: none;
+        color: #00458b;
+        font-weight: 600;
+        font-size: 1.3rem;
+        transition: all 0.3s ease;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      
+      .nav-item:hover {
+        background-color: rgba(0, 119, 190, 0.2);
+      }
+      
+      .nav-item .emoji {
+        font-size: 1.3rem;
+        margin-right: 8px;
+      }
+      
+      .nav-item.active {
+        background-color: rgba(0, 119, 190, 0.3);
+      }
+      
+      /* Dropdown-Menü */
+      .dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: rgba(255, 255, 255, 0.95);
+        border-radius: 0 0 10px 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        min-width: 200px;
+        display: none;
+        z-index: 101;
+      }
+      
+      .nav-item:hover .dropdown {
+        display: block;
+      }
+      
+      .dropdown-item {
+        display: block;
+        padding: 10px 15px;
+        color: #00458b;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        border-bottom: 1px solid rgba(0, 119, 190, 0.1);
+        font-weight: 500;
+      }
+      
+      .dropdown-item:last-child {
+        border-bottom: none;
+        border-radius: 0 0 10px 10px;
+      }
+      
+      .dropdown-item:hover {
+        background-color: rgba(0, 119, 190, 0.1);
+        padding-left: 20px;
+      }
+    
+    /* Hauptinhalt */
+    .main-content {
+      max-width: 1000px;
+      margin: 60px auto;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 10;
+      flex: 1;
+    }
+    
+    .page-title {
+      color: #00458b;
+      font-size: 2.8rem;
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 700;
+    }
+    
+    .intro-text {
+      color: #333;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    /* Team-Mitglied Block */
+    .team-member {
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 15px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .team-member:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .team-member h3 {
+      color: #0077be;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    
+    .team-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+    
+    @media (min-width: 768px) {
+      .team-content {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+    }
+    
+    .team-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      flex-shrink: 0;
+
+    }
+    
+    @media (min-width: 768px) {
+      .team-image {
+        margin-right: 30px;
+        margin-bottom: 0;
+		
+      }
+    }
+    
+    .team-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+		object-position: top; /* zeigt den oberen Teil des Bildes */
+
+
+    }
+    
+    .team-info {
+      flex-grow: 1;
+    }
+    
+    .team-info p {
+      color: #333;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+    
+    .team-info strong {
+      color: #00458b;
+    }
+    
+    .image-caption {
+      color: #0077be;
+      font-style: italic;
+      font-size: 0.9rem;
+      text-align: center;
+      margin-top: 5px;
+    }
+    
+    .fact-box {
+      background-color: rgba(0, 119, 190, 0.1);
+      border-left: 5px solid #0077be;
+      padding: 20px;
+      margin: 30px 0;
+      border-radius: 0 10px 10px 0;
+    }
+    
+    .fact-box h4 {
+      color: #00458b;
+      margin-bottom: 10px;
+      font-weight: 600;
+      font-size: 1.3rem;
+    }
+    
+    .fact-box ul {
+      margin-left: 20px;
+    }
+    
+    .fact-box li {
+      color: #333;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    
+    /* Home Button */
+    .home-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: rgba(255, 255, 255, 0.7);
+      border: none;
+      border-radius: 10px;
+      padding: 10px 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      text-decoration: none;
+    }
+    
+    .home-button:hover {
+      background: rgba(255, 255, 255, 0.9);
+      transform: scale(1.05);
+    }
+    
+    .home-icon {
+      font-size: 24px;
+      color: #00458b;
+      margin-right: 8px;
+    }
+    
+    .home-text {
+      color: #00458b;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    
+   
+    
+    
+    /* Korallen am Boden */
+    .coral-bed {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      z-index: 1;
+    }
+    
+    /* Footer */
+    .site-footer {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 15px 0;
+      border-top: 3px solid #0077be;
+      position: relative;
+      z-index: 100;
+      margin-top: auto;
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      flex-wrap: wrap;
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .footer-link {
+      display: flex;
+      align-items: center;
+      color: #00458b;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .footer-link:hover {
+      color: #0077be;
+      text-decoration: underline;
+    }
+    
+    .footer-link .emoji {
+      font-size: 1.2rem;
+      margin-right: 8px;
+    }
+    
+    .copyright {
+      color: #00458b;
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .page-title {
+        font-size: 2.5rem;
+      }
+      
+      .main-content {
+        padding: 20px;
+        margin: 40px 10px;
+      }
+      
+      .team-member h3 {
+        font-size: 1.5rem;
+      }
+      
+      .team-image {
+        width: 200px;
+        height: 200px;
+      }
+      
+      .mascot {
+        width: 220px;
+      }
+      
+      .mascot-speech {
+        max-width: 220px;
+      }
+      
+      .dropdown {
+        position: static;
+        width: 100%;
+        margin-top: 5px;
+      }
+      
+      .nav-item {
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+      }
+      
+      .sound-bubble {
+        width: 70px;
+        height: 70px;
+      }
+      
+      .sound-text {
+        font-size: 0.9rem;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .page-title {
+        font-size: 2rem;
+      }
+      
+      .main-content {
+        padding: 15px;
+      }
+      
+      .team-member {
+        padding: 15px;
+      }
+      
+      .team-image {
+        width: 100px;
+        height: 100px;
+      }
+      
+     
+      
+      .site-nav {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 10px;
+      }
+      
+      .nav-item {
+        font-size: 1.1rem;
+        margin: 0 5px;
+        padding: 8px 10px;
+      }
+      
+      .nav-item .emoji {
+        font-size: 1.2rem;
+      }
+      
+      .sound-bubble {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .sound-text {
+        font-size: 0.8rem;
+      }
+      
+      .footer-links {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ocean-container">
+    <div class="bubbles-container"></div>
+    
+    
+    
+    <!-- Header und Navigation -->
+    <header class="site-header">
+      <nav class="site-nav">
+        <div class="nav-item">
+          <span class="emoji">🐚</span>
+          <a href="ueber-korallenriffe.html">Über Korallenriffe</a>
+        </div>
+        
+        <div class="nav-item">
+          <span class="emoji">🐠</span>
+          <a href="korallenartensite.html"></a>
+          Arten
+          <div class="dropdown">
+            <a href="korallenartensite.html" class="dropdown-item">Steinkorallen</a>
+            <a href="korallenartensite.html" class="dropdown-item">Weichkorallen</a>
+            <a href="korallenartensite.html" class="dropdown-item">Hornkorallen</a>
+          </div>
+        </div>
+        
+        <div class="nav-item">
+          <span class="emoji">🎮</span>
+          Spiel und Spaß
+          <div class="dropdown">
+            <a href="quiz.html" class="dropdown-item">Quiz</a>
+            <a href="malvorlagen.html" class="dropdown-item">Malvorlagen</a>
+            <a href="memory.html" class="dropdown-item">Memory</a>
+          </div>
+        </div>
+        
+        <div class="nav-item">
+          <span class="emoji">🌊</span>
+          Schutzmaßnahmen
+          <div class="dropdown">
+            <a href="schutzmassnahmen.html#projekte" class="dropdown-item">Schutzprojekte</a>
+          
+          </div>
+        </div>
+      </nav>
+    </header>
+    
+    <!-- Home Button -->
+    <a href="../index.html" class="home-button" title="Zurück zur Startseite">
+      <span class="home-icon">🪸</span>
+      <span class="home-text">Start</span>
+    </a>   
+
+  <main class="main-content">
+    <h1 class="page-title">Impressum</h1>
+    <div class="content-box">
+		
+      <h2>Angaben der Mitglieder aus Team A4</h2>
+      <p>&nbsp;</p>
+      <p><strong>Ellen Lübsen, Karlotta Wahlich und Malina Krüger</strong><br>
+        Korallenriff Projekt<br>
+        Kurs: User Centered Design (6. Semester)<br>
+        An der Jade Hochschule</p>
+      <h3>&nbsp;</h3>
+      <h3>Betreuung</h3>
+<p>Herr Prof. Dipl.-Des. Götz Greiner; Herr Dipl.-Phys. Thomas Severiens; Tutorium: David Röskamm<br></p>
+     
+
+      <h3>&nbsp;</h3>
+      <h3>Erscheinungsjahr und Erscheinungsort:</h3>
+      <p>2025, Wilhelmshaven<br>
+
+      <h3>&nbsp;</h3>
+      <h3>Bilder, Grafiken udn Texte</h3>
+      <p>Für die Erstellung der Website wurden Vorlsungsunterlagen, Codebeispiele aus dem Tutorium und W3Schools zur Hilfe genommen.Texte wurden teilweise mit Hilfe von ChatGPT und DeepL erstellt. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
+</p>
+		</p>
+	  </div>
+  </main>
+	
+	  
+    <!-- Korallen am Boden -->
+    <img src="../Images/korallerichtig.png" alt="Korallen" class="coral-bed">
+    
+   
+    
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="team.html" class="footer-link">
+            <span class="emoji">✉️</span>Kontakt
+          </a>
+          <a href="impressum.html" class="footer-link">
+            <span class="emoji">📝</span>Impressum
+          </a>
+        </div>
+        <div class="copyright">
+          © 2025 Korallenriff-Welt - Alle Rechte vorbehalten
+        </div>
+      </div>
+    </footer>
+  
+
+	</div>
+</body>
+</html>

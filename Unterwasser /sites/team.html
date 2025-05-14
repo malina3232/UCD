@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Unser Team | Korallenriff-Welt</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    /* Grundlegende Stile */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Quicksand', sans-serif;
+    }
+    
+    body {
+      overflow-x: hidden;
+    }
+    
+    /* Hauptcontainer */
+    .ocean-container {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      background: url('../Images/underwater-background.jpg') no-repeat center center;
+      background-size: cover;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* Blasen */
+    .bubble {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+      animation: bubbleRise linear infinite;
+    }
+    
+    @keyframes bubbleRise {
+      0% {
+        transform: translateY(100vh) scale(0.3);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.8;
+      }
+      80% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-100px) scale(1);
+        opacity: 0;
+      }
+    }
+    
+    /* Header und Navigation */
+    .site-header {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 15px 0;
+      border-bottom: 3px solid #0077be;
+      position: relative;
+      z-index: 100;
+    }
+    
+    .site-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .nav-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 15px 20px;
+      margin: 0 15px;
+      text-decoration: none;
+      color: #00458b;
+      font-weight: 600;
+      font-size: 1.3rem;
+      transition: all 0.3s ease;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    
+    .nav-item:hover {
+      background-color: rgba(0, 119, 190, 0.2);
+    }
+    
+    .nav-item .emoji {
+      font-size: 1.3rem;
+      margin-right: 8px;
+    }
+    
+    .nav-item.active {
+      background-color: rgba(0, 119, 190, 0.3);
+    }
+    
+    /* Dropdown-Menü */
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      min-width: 200px;
+      display: none;
+      z-index: 101;
+    }
+    
+    .nav-item:hover .dropdown {
+      display: block;
+    }
+    
+    .dropdown-item {
+      display: block;
+      padding: 10px 15px;
+      color: #00458b;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border-bottom: 1px solid rgba(0, 119, 190, 0.1);
+      font-weight: 500;
+    }
+    
+    .dropdown-item:last-child {
+      border-bottom: none;
+      border-radius: 0 0 10px 10px;
+    }
+    
+    .dropdown-item:hover {
+      background-color: rgba(0, 119, 190, 0.1);
+      padding-left: 20px;
+    }
+    
+    /* Hauptinhalt */
+    .main-content {
+      max-width: 1000px;
+      margin: 60px auto;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 10;
+      flex: 1;
+    }
+    
+    .page-title {
+      color: #00458b;
+      font-size: 2.8rem;
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 700;
+    }
+    
+    .intro-text {
+      color: #333;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    /* Team-Mitglied Block */
+    .team-member {
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 15px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .team-member:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .team-member h3 {
+      color: #0077be;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    
+    .team-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+    
+    @media (min-width: 768px) {
+      .team-content {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+    }
+    
+    .team-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      flex-shrink: 0;
+    }
+    
+    @media (min-width: 768px) {
+      .team-image {
+        margin-right: 30px;
+        margin-bottom: 0;
+      }
+    }
+    
+    .team-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .team-info {
+      flex-grow: 1;
+    }
+    
+    .team-info p {
+      color: #333;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+    
+    .team-info strong {
+      color: #00458b;
+    }
+    
+    .image-caption {
+      color: #0077be;
+      font-style: italic;
+      font-size: 0.9rem;
+      text-align: center;
+      margin-top: 5px;
+    }
+    
+    .fact-box {
+      background-color: rgba(0, 119, 190, 0.1);
+      border-left: 5px solid #0077be;
+      padding: 20px;
+      margin: 30px 0;
+      border-radius: 0 10px 10px 0;
+    }
+    
+    .fact-box h4 {
+      color: #00458b;
+      margin-bottom: 10px;
+      font-weight: 600;
+      font-size: 1.3rem;
+    }
+    
+    .fact-box ul {
+      margin-left: 20px;
+    }
+    
+    .fact-box li {
+      color: #333;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    
+    /* Home Button */
+    .home-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: rgba(255, 255, 255, 0.7);
+      border: none;
+      border-radius: 10px;
+      padding: 10px 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      text-decoration: none;
+    }
+    
+    .home-button:hover {
+      background: rgba(255, 255, 255, 0.9);
+      transform: scale(1.05);
+    }
+    
+    .home-icon {
+      font-size: 24px;
+      color: #00458b;
+      margin-right: 8px;
+    }
+    
+    .home-text {
+      color: #00458b;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    
+    
+    /* Maskottchen mit Sprechblase */
+    .mascot-container {
+      position: absolute;
+      bottom: 100px;
+      left: 10%;
+      z-index: 60;
+      animation: swimLeftOnly 30s linear infinite;
+    }
+    
+    /* Animation für Schwimmen nur nach links */
+    @keyframes swimLeftOnly {
+      0% {
+        transform: translateX(80vw) translateY(0);
+      }
+      25% {
+        transform: translateX(60vw) translateY(-30px);
+      }
+      50% {
+        transform: translateX(40vw) translateY(20px);
+      }
+      75% {
+        transform: translateX(20vw) translateY(-10px);
+      }
+      100% {
+        transform: translateX(0) translateY(0);
+      }
+    }
+    
+    .mascot {
+      width: 500px; 
+      height: auto;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    
+    .mascot:hover {
+      transform: scale(1.1) rotate(10deg);
+    }
+    
+    .mascot-speech {
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      padding: 15px;
+      margin-bottom: 5px;
+      max-width: 280px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      display: none;
+    }
+    
+    .mascot-speech.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
+    .mascot-speech:after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 30px;
+      width: 0;
+      height: 0;
+      border: 15px solid transparent;
+      border-top-color: rgba(255, 255, 255, 0.9);
+      border-bottom: 0;
+    }
+    
+    .mascot-speech p {
+      margin: 0;
+      color: #00458b;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+    
+    /* Audio-Steuerung */
+    .audio-control {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 1000;
+    }
+    
+    .sound-bubble {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .sound-bubble:hover {
+      background: rgba(255, 255, 255, 0.9);
+      transform: scale(1.1);
+    }
+    
+    .sound-text {
+      font-size: 1rem;
+      color: #00458b;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.2;
+    }
+    
+    /* Korallen am Boden */
+    .coral-bed {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      z-index: 1;
+    }
+    
+    /* Footer */
+    .site-footer {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 15px 0;
+      border-top: 3px solid #0077be;
+      position: relative;
+      z-index: 100;
+      margin-top: auto;
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      flex-wrap: wrap;
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .footer-link {
+      display: flex;
+      align-items: center;
+      color: #00458b;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .footer-link:hover {
+      color: #0077be;
+      text-decoration: underline;
+    }
+    
+    .footer-link .emoji {
+      font-size: 1.2rem;
+      margin-right: 8px;
+    }
+    
+    .copyright {
+      color: #00458b;
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .page-title {
+        font-size: 2.5rem;
+      }
+      
+      .main-content {
+        padding: 20px;
+        margin: 40px 10px;
+      }
+      
+      .team-member h3 {
+        font-size: 1.5rem;
+      }
+      
+      .team-image {
+        width: 150px;
+        height: 150px;
+      }
+      
+      .mascot {
+        width: 220px;
+      }
+      
+      .mascot-speech {
+        max-width: 220px;
+      }
+      
+      .dropdown {
+        position: static;
+        width: 100%;
+        margin-top: 5px;
+      }
+      
+      .nav-item {
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+      }
+      
+      .sound-bubble {
+        width: 70px;
+        height: 70px;
+      }
+      
+      .sound-text {
+        font-size: 0.9rem;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .page-title {
+        font-size: 2rem;
+      }
+      
+      .main-content {
+        padding: 15px;
+      }
+      
+      .team-member {
+        padding: 15px;
+      }
+      
+      .team-image {
+        width: 120px;
+        height: 120px;
+      }
+      
+      .mascot {
+        width: 180px;
+      }
+      
+      .mascot-speech {
+        max-width: 180px;
+        font-size: 0.9rem;
+      }
+      
+      .site-nav {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 10px;
+      }
+      
+      .nav-item {
+        font-size: 1.1rem;
+        margin: 0 5px;
+        padding: 8px 10px;
+      }
+      
+      .nav-item .emoji {
+        font-size: 1.2rem;
+      }
+      
+      .sound-bubble {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .sound-text {
+        font-size: 0.8rem;
+      }
+      
+      .footer-links {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ocean-container">
+    <div class="bubbles-container"></div>
+    
+    
+    <!-- Header und Navigation -->
+    <header class="site-header">
+      <nav class="site-nav">
+        <div class="nav-item">
+          <span class="emoji">🐚</span>
+          <a href="ueber-korallenriffe.html">Über Korallenriffe</a>
+        </div>
+        
+        <div class="nav-item">
+          <span class="emoji">🐠</span>
+          <a href="korallenartensite.html"></a>
+          Arten
+          <div class="dropdown">
+            <a href="korallenartensite.html" class="dropdown-item">Steinkorallen</a>
+            <a href="korallenartensite.html" class="dropdown-item">Weichkorallen</a>
+            <a href="korallenartensite.html" class="dropdown-item">Hornkorallen</a>
+          </div>
+        </div>
+        
+        <div class="nav-item">
+          <span class="emoji">🎮</span>
+          Spiel und Spaß
+          <div class="dropdown">
+            <a href="quiz.html" class="dropdown-item">Quiz</a>
+            <a href="malvorlagen.html" class="dropdown-item">Malvorlagen</a>
+            <a href="memory.html" class="dropdown-item">Memory</a>
+          </div>
+        </div>
+        
+        <div class="nav-item">
+          <span class="emoji">🌊</span>
+          Schutzmaßnahmen
+          <div class="dropdown">
+            <a href="schutzmassnahmen.html#projekte" class="dropdown-item">Schutzprojekte</a>
+          
+          </div>
+        </div>
+      </nav>
+    </header>
+    
+    <!-- Home Button -->
+    <a href="../index.html" class="home-button" title="Zurück zur Startseite">
+      <span class="home-icon">🪸</span>
+      <span class="home-text">Start</span>
+    </a>
+    
+    <!-- Hauptinhalt -->
+    <main class="main-content">
+      <h1 class="page-title">Unser Team – Die Riff-Beschützer!</h1>
+      
+      <p class="intro-text">Hey du! Wir sind das Team hinter der Seite „Korallenriff-Welt" und wir wollen uns kurz vorstellen. 🐠</p>
+      
+      <!-- Ellen -->
+      <div class="team-member">
+        <h3>🐙 Ellen – Die Meeresforscherin</h3>
+        <div class="team-content">
+          <div class="team-image">
+            <img src="..//Images/avatarellen.png" alt="Ellen">
+          </div>
+          <div class="team-info">
+            <p><strong>Lieblingstier:</strong> Oktopus</p>
+            <p><strong>Was sie liebt:</strong> Rätsel lösen, Tauchen und neue Fischarten entdecken</p>
+            <p><strong>Ihr Riff-Geheimnis:</strong> „Wusstest du, dass ein Oktopus drei Herzen hat?"</p>
+            <p class="image-caption">Ellen auf Entdeckungstour!</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Malina -->
+      <div class="team-member">
+        <h3>🦈 Malina – Der Technikhai</h3>
+        <div class="team-content">
+          <div class="team-image">
+            <img src="../Images/avatarmalina.png" alt="Malina">
+          </div>
+          <div class="team-info">
+            <p><strong>Lieblingstier:</strong> Hammerhai</p>
+            <p><strong>Was er liebt:</strong> Webseiten basteln und schnell durch den Ozean schwimmen</p>
+            <p><strong>Sein Riff-Geheimnis:</strong> „Hammerhaie sehen super aus – und sind tolle Jäger!"</p>
+            <p class="image-caption">Malina programmiert sogar unter Wasser 😄</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Lotta -->
+      <div class="team-member">
+        <h3>🎨 Lotta Korallenpinsel – Die Kreativkrabbe</h3>
+        <div class="team-content">
+          <div class="team-image">
+            <img src="../Images/avatarlotta.png" alt="Lotta">
+          </div>
+          <div class="team-info">
+            <p><strong>Lieblingstier:</strong> Mandarinfisch</p>
+            <p><strong>Was sie liebt:</strong> Malen, Basteln und bunte Unterwasserwelten erstellen</p>
+            <p><strong>Ihr Riff-Geheimnis:</strong> „Mandarinfische sehen aus, als wären sie direkt aus meinem Malkasten geschwommen!"</p>
+            <p class="image-caption">Lotta bringt bunte Ideen ins Riff!</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Fact Box -->
+      <div class="fact-box">
+        <h4>Wusstest du schon?</h4>
+        <ul>
+          <li>Wir alle lieben das Meer und setzen uns für Korallenschutz ein! Nur so können wir uns gaaaanz lange an den vielen Bewohnern erfreuen. 🌍</li>
+          <li>Unsere Webseite wurde extra für dich gemacht – zum Lernen und Spaß haben.</li>
+          <li>Wenn du Fragen oder Ideen hast, schreib uns gerne eine Nachricht!</li>
+        </ul>
+      </div>
+    </main>
+    
+    <!-- Maskottchen mit Sprechblase -->
+    <div class="mascot-container">
+      <div class="mascot-speech" id="mascot-speech">
+        <p>Hallo! Ich bin Finny. Das ist unser tolles Team, das diese Webseite gemacht hat!</p>
+      </div>
+      <img src="../Images/koralli.png" alt="Finny-Maskottchen" class="mascot" id="mascot">
+    </div>
+    
+    <!-- Korallen am Boden -->
+    <img src="../Images/korallerichtig.png" alt="Korallen" class="coral-bed">
+    
+    <!-- Audio-Steuerung mit Klick-Mich-Text -->
+    <div class="audio-control">
+      <div class="sound-bubble" id="sound-toggle" aria-label="Sound ein/ausschalten">
+        <span class="sound-text">Klick mich!<br>Ton an</span>
+      </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="team.html" class="footer-link">
+            <span class="emoji">✉️</span>Kontakt
+          </a>
+          <a href="impressum.html" class="footer-link">
+            <span class="emoji">📝</span>Impressum
+          </a>
+        </div>
+        <div class="copyright">
+          © 2025 Korallenriff-Welt - Alle Rechte vorbehalten
+        </div>
+      </div>
+    </footer>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Blasen erzeugen
+      createBubbles();
+      
+      // Sound-Steuerung
+      setupSoundControl();
+      
+      // Interaktive Elemente
+      setupInteractiveElements();
+      
+      // Maskottchen-Sprechblase
+      setupMascot();
+    });
+    
+    // Blasen erzeugen
+    function createBubbles() {
+      const bubblesContainer = document.querySelector('.bubbles-container');
+      const bubbleCount = 30;
+      
+      for (let i = 0; i < bubbleCount; i++) {
+        const bubble = document.createElement('div');
+        bubble.classList.add('bubble');
+        
+        // Zufällige Größe
+        const size = Math.random() * 20 + 5;
+        bubble.style.width = `${size}px`;
+        bubble.style.height = `${size}px`;
+        
+        // Zufällige Position
+        const posX = Math.random() * 100;
+        bubble.style.left = `${posX}%`;
+        
+        // Zufällige Animation-Dauer
+        const duration = Math.random() * 10 + 5;
+        bubble.style.animationDuration = `${duration}s`;
+        
+        // Zufällige Verzögerung
+        const delay = Math.random() * 10;
+        bubble.style.animationDelay = `${delay}s`;
+        
+        bubblesContainer.appendChild(bubble);
+      }
+    }
+    
+    // Sound-Steuerung
+    function setupSoundControl() {
+      const soundToggle = document.getElementById('sound-toggle');
+      const soundText = document.querySelector('.sound-text');
+      let soundEnabled = false;
+      
+      // Erstelle Audio-Elemente
+      const oceanAmbient = document.createElement('audio');
+      oceanAmbient.src = '../Images/ocean-ambient.mp3';
+      oceanAmbient.loop = true;
+      oceanAmbient.preload = 'auto';
+      document.body.appendChild(oceanAmbient);
+      
+      const bubbleSound = document.createElement('audio');
+      bubbleSound.src = '../Images/bubble-sound.mp3';
+      bubbleSound.preload = 'auto';
+      document.body.appendChild(bubbleSound);
+      
+      const clickSound = document.createElement('audio');
+      clickSound.src = '../Images/click.mp3';
+      clickSound.preload = 'auto';
+      document.body.appendChild(clickSound);
+      
+      soundToggle.addEventListener('click', function() {
+        soundEnabled = !soundEnabled;
+        
+        if (soundEnabled) {
+          soundText.innerHTML = 'Klick mich!<br>Ton aus';
+          oceanAmbient.play().catch(e => console.error("Audio konnte nicht abgespielt werden:", e));
+        } else {
+          soundText.innerHTML = 'Klick mich!<br>Ton an';
+          oceanAmbient.pause();
+        }
+        
+        // Klicksound abspielen
+        const clickSoundClone = clickSound.cloneNode();
+        clickSoundClone.volume = 0.5;
+        clickSoundClone.play().catch(e => console.error("Audio konnte nicht abgespielt werden:", e));
+      });
+      
+      // Funktion zum Abspielen von Sounds global verfügbar machen
+      window.playSound = function(type) {
+        if (!soundEnabled) return;
+        
+        if (type === 'bubble') {
+          const bubbleSoundClone = bubbleSound.cloneNode();
+          bubbleSoundClone.volume = 0.3;
+          bubbleSoundClone.play().catch(e => console.error("Audio konnte nicht abgespielt werden:", e));
+        } else if (type === 'click') {
+          const clickSoundClone = clickSound.cloneNode();
+          clickSoundClone.volume = 0.5;
+          clickSoundClone.play().catch(e => console.error("Audio konnte nicht abgespielt werden:", e));
+        }
+      };
+    }
+    
+    // Interaktive Elemente
+    function setupInteractiveElements() {
+      // Navigation-Items
+      const navItems = document.querySelectorAll('.nav-item');
+      
+      navItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+          // Blasensound abspielen
+          if (window.playSound) {
+            playSound('bubble');
+          }
+        });
+        
+        // Nur für das Hauptelement (nicht für Links innerhalb)
+        item.addEventListener('click', function(e) {
+          // Nur verhindern, wenn das Hauptelement geklickt wurde (nicht der Link oder Dropdown)
+          if (e.target === this || e.target === this.querySelector('.emoji')) {
+            e.preventDefault();
+            
+            // Aktiven Zustand für Navigation zurücksetzen
+            navItems.forEach(nav => nav.classList.remove('active'));
+            
+            // Diesen Nav-Item als aktiv markieren
+            this.classList.add('active');
+            
+            // Klicksound abspielen
+            if (window.playSound) {
+              playSound('click');
+            }
+          }
+        });
+      });
+      
+      // Dropdown-Items
+      const dropdownItems = document.querySelectorAll('.dropdown-item');
+      
+      dropdownItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+          // Blasensound abspielen
+          if (window.playSound) {
+            playSound('bubble');
+          }
+        });
+        
+        item.addEventListener('click', function(e) {
+          // Klicksound abspielen
+          if (window.playSound) {
+            playSound('click');
+          }
+          
+          // Wenn der Link eine echte URL hat, lassen wir die Navigation zu
+          if (this.getAttribute('href') && this.getAttribute('href') !== '#') {
+            // Wir verzögern die Navigation leicht, damit der Sound abgespielt werden kann
+            setTimeout(() => {
+              window.location.href = this.getAttribute('href');
+            }, 100);
+          } else {
+            e.preventDefault(); // Nur verhindern, wenn es ein Platzhalter-Link ist
+            console.log("Dropdown-Item geklickt: " + this.textContent);
+          }
+        });
+      });
+      
+      // Home-Button Sound
+      const homeButton = document.querySelector('.home-button');
+      
+      if (homeButton) {
+        homeButton.addEventListener('mouseenter', function() {
+          if (window.playSound) {
+            playSound('bubble');
+          }
+        });
+        
+        homeButton.addEventListener('click', function() {
+          if (window.playSound) {
+            playSound('click');
+          }
+        });
+      }
+      
+      // Footer-Links Sound
+      const footerLinks = document.querySelectorAll('.footer-link');
+      
+      footerLinks.forEach(link => {
+        link.addEventListener('mouseenter', function() {
+          if (window.playSound) {
+            playSound('bubble');
+          }
+        });
+        
+        link.addEventListener('click', function() {
+          if (window.playSound) {
+            playSound('click');
+          }
+        });
+      });
+    }
+    
+    // Maskottchen-Sprechblase
+    function setupMascot() {
+      const mascot = document.getElementById('mascot');
+      const mascotSpeech = document.getElementById('mascot-speech');
+      
+      // Sprechblase beim Laden anzeigen und nach 5 Sekunden ausblenden
+      mascotSpeech.classList.add('active');
+      
+      setTimeout(() => {
+        mascotSpeech.classList.remove('active');
+      }, 5000);
+      
+      // Sprechblase bei Klick auf Maskottchen ein-/ausblenden
+      mascot.addEventListener('click', function() {
+        if (window.playSound) {
+          playSound('click');
+        }
+        
+        mascotSpeech.classList.toggle('active');
+        
+        // Sprechblase nach 5 Sekunden wieder ausblenden
+        if (mascotSpeech.classList.contains('active')) {
+          setTimeout(() => {
+            mascotSpeech.classList.remove('active');
+          }, 5000);
+        }
+      });
+      
+      // Animation bei Hover
+      mascot.addEventListener('mouseenter', function() {
+        // Blasensound abspielen
+        if (window.playSound) {
+          playSound('bubble');
+        }
+      });
+      
+      // Verschiedene Sprechblasen-Texte für die Team-Seite
+      const mascotTexts = [
+        "Hallo! Ich bin Finny. Das ist unser tolles Team, das diese Webseite gemacht hat!",
+        "Ellen weiß alles über Meerestiere und kann super tauchen!",
+        "Malina ist unser Computer-Experte und baut tolle Webseiten!",
+        "Lotta malt die schönsten Unterwasserbilder, die du dir vorstellen kannst!",
+        "Wir alle lieben die Korallenriffe und wollen sie schützen!"
+      ];
+      
+      // Zufälligen Text anzeigen, wenn auf das Maskottchen geklickt wird
+      mascot.addEventListener('click', function() {
+        const randomText = mascotTexts[Math.floor(Math.random() * mascotTexts.length)];
+        mascotSpeech.querySelector('p').textContent = randomText;
+      });
+    }
+  </script>
+</body>
+</html>
